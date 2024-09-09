@@ -1,0 +1,31 @@
+const context = new AudioContext()
+
+// 振荡器
+const osc = context.createOscillator()
+osc.frequency.value = 220
+osc.type = 'square'
+osc.start()
+
+// 音量
+const volume = context.createGain()
+volume.gain.value = 0.5
+
+const out = context.destination
+osc.connect(volume)
+volume.connect(out)
+
+// 断开节点
+// osc.disconnect(volume)
+// volume.disconnect(out)
+
+const osc2 = context.createOscillator();
+osc2.frequency.value = 800;
+osc2.type = 'sine';
+osc2.start();
+
+const volume2 = context.createGain();
+volume2.gain.value = 0.5;
+
+osc2.connect(volume2);
+volume2.connect(out);
+
